@@ -34,9 +34,15 @@ image = np.real(np.fft.ifft2(spectrum))
 # %% SCIPY
 import scipy
 image = scipy.signal.convolve2d(image, impulse_response, mode = 'mode_type')
+filtered_image = scipy.signal.medfilt2d(image, kernel_size = size_of_the_kernel)
+mat = scipy.io.loadmat('path_to_mat_file').get('label')
+gaussian_filter = scipy.ndimage.gaussian_filter(input = dirac_impulse, sigma = sigma)
+
 
 # %% SKIMAGE
 import skimage
 image = skimage.io.imread('path_to_image')
 gs_image = skimage.color.rgb2gray(image)
 image = skimage.transform.rotate(image,angle)
+equalised_image = skimage.exposure.equalize_hist(image)
+equalised_image = skimage.exposure.equalize_adapthist(image, clip_limit = limit)
