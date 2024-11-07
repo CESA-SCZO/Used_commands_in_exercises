@@ -43,6 +43,7 @@ gaussian_filter = scipy.ndimage.gaussian_filter(input = dirac_impulse, sigma = s
 import skimage
 image = skimage.io.imread('path_to_image')
 gs_image = skimage.color.rgb2gray(image)
+float_img = skimage.img_as_float(image)
 image = skimage.transform.rotate(image,angle)
 equalised_image = skimage.exposure.equalize_hist(image)
 equalised_image = skimage.exposure.equalize_adapthist(image, clip_limit = limit)
